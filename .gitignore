@@ -3,18 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-*.egg
-
-# Virtual environments
-env/
-venv/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
 
 # dotenv environment variables file
 .env
