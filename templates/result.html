@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcription Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        .markdown-preview {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="printableArea">
+        <h1>Notes</h1>
+        <div class="markdown-preview" id="notes"></div>
+        <pre id="pre" style="display: none;">{{ notes }}</pre>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Get the raw Markdown notes
+        const markdownNotes = document.getElementById("pre").innerText;
+        
+        // Convert Markdown to HTML
+        const htmlNotes = marked.parse(markdownNotes);
+        
+        // Insert the HTML into the notes div
+        document.getElementById('notes').innerHTML = htmlNotes;
+
+        // Automatically trigger print dialog on page load
+        window.onload = function() {
+            window.print();
+        };
+    </script>
+</body>
+</html>
