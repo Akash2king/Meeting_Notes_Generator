@@ -1,7 +1,8 @@
-Flask==2.2.2
+flask>=2.2.0
+werkzeug>=2.2.0
 assemblyai
 groq
 markdown
 WeasyPrint
-Werkzeug>=2.2.2
+
 
