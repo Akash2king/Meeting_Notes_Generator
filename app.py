@@ -3,9 +3,9 @@ import assemblyai as aai
 from groq import Groq
 import markdown
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 # Load environment variables from the .env file
-load_dotenv()
+# load_dotenv()
 app = Flask(__name__)
 # Set AssemblyAI API key
 aai.settings.api_key = os.getenv('AAI_API_KEY')
