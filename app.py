@@ -12,8 +12,9 @@ aai.settings.api_key = os.getenv('AAI_API_KEY')
 # Set Groq API key
 groq_client = Groq(api_key=os.getenv('GORQ_API_KEY'))
 def transcribe_audio(audio_file):
+    config = aai.TranscriptionConfig(speaker_labels=True)
     transcriber = aai.Transcriber()
-    transcript = transcriber.transcribe(audio_file)
+    transcript = transcriber.transcribe(audio_file,config=config)
     if transcript.status == aai.TranscriptStatus.error:
         return None, f"Transcription failed: {transcript.error}"
     return transcript.text, None
@@ -60,8 +61,12 @@ def transcribe():
     if not audio_file:
         return jsonify({'error': 'Audio file is required'}), 400
     
-    # Save the file temporarily
-    audio_file_path = f"./uploads/{audio_file.filename}"  # Ensure you have an 'uploads' directory
+    uploads_dir = "./uploads"
+    if not os.path.exists(uploads_dir):
+        os.makedirs(uploads_dir)
+
+# Save the file temporarily
+    audio_file_path = os.path.join(uploads_dir, audio_file.filename)
     audio_file.save(audio_file_path)
 
     # Transcribe the audio

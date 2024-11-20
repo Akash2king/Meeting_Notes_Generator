@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #ff6b08; }
+      50% { text-shadow: 0 0 20px #ff6b08, 0 0 30px #ff6b08; }
+      100% { text-shadow: 0 0 10px #ff6b08; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Parallax Hero Section */
+    .hero {
+      background: url('https://media.giphy.com/media/xT0BKmtQGLbumr5RCM/giphy.gif') center/cover;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      perspective: 1px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .title {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #ff6b08;
+      margin-bottom: 1rem;
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background: linear-gradient(45deg, #ff6b08, #ff4f08);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 107, 8, 0.7);
+    }
+
+    /* Rules Section */
+    .rules-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 2rem;
+      opacity: 0;
+      animation: slideIn 1s forwards;
+      animation-delay: 0.5s;
+    }
+
+    .rule-card {
+      background: rgba(255, 107, 8, 0.1);
+      border-left: 4px solid #ff6b08;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 0 10px 10px 0;
+      transition: transform 0.3s;
+    }
+
+    .rule-card:hover {
+      transform: translateX(10px);
+      background: rgba(255, 107, 8, 0.2);
+    }
+
+    /* Prize Pool Section */
+    .prize-pool {
+      text-align: center;
+      margin: 4rem 0;
+      padding: 3rem;
+      background: linear-gradient(45deg, rgba(255, 107, 8, 0.2), rgba(255, 79, 8, 0.2));
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 107, 8, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prize-pool::before {
+      content: '';
+      background: url('https://media.giphy.com/media/3ohze3Jg5MOd9WnUIY/giphy.gif') center/cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.2;
+    }
+
+    .prize-amount {
+      font-size: 4rem;
+      color: #ff6b08;
+      margin: 1rem 0;
+      text-shadow: 0 0 20px rgba(255, 107, 8, 0.7);
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 3rem;
+      }
+
+      .hero {
+        height: 400px;
+      }
+
+      .cta-button {
+        font-size: 1rem;
+      }
+
+      .rules-section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-content">
+      <h1 class="title">FREE FIRE CHAMPIONSHIP 2024</h1>
+      <p class="subtitle">Battle for Glory • Prove Your Worth • Become a Legend</p>
+      <button class="cta-button">REGISTER NOW</button>
+    </div>
+  </div>
+
+  <div class="rules-section">
+    <h2 style="color: #ff6b08; margin-bottom: 2rem;">TOURNAMENT RULES & REGULATIONS</h2>
+    
+    <div class="rule-card">
+      <h3>Team Composition</h3>
+      <p>• Teams must consist of 4 players with 1 substitute player (optional)</p>
+      <p>• All players must be at least 16 years old</p>
+      <p>• Players must use their own registered Free Fire account</p>
+    </div>
+
+    <div class="rule-card">
+      <h3>Match Format</h3>
+      <p>• Battle Royale - Squad Mode</p>
+      <p>• Points System: Kills (1 point each) + Position Points</p>
+      <p>• Top 12 teams advance to finals</p>
+    </div>
+
+    <div class="rule-card">
+      <h3>Tournament Stages</h3>
+      <p>• Qualifiers: Online (Best of 3)</p>
+      <p>• Quarter Finals: Online (Best of 5)</p>
+      <p>• Semi Finals: LAN Event (Best of 5)</p>
+      <p>• Finals: LAN Event (Best of 7)</p>
+    </div>
+
+    <div class="rule-card">
+      <h3>Fair Play</h3>
+      <p>• Use of hacks, mods, or cheats will result in immediate disqualification</p>
+      <p>• All players must use official Free Fire app</p>
+      <p>• Screen recording is mandatory during online matches</p>
+    </div>
+
+    <div class="prize-pool">
+      <h2>PRIZE POOL</h2>
+      <div class="prize-amount">$50,000</div>
+      <p>1st Place: $25,000</p>
+      <p>2nd Place: $15,000</p>
+      <p>3rd Place: $10,000</p>
+    </div>
+  </div>
+</body>
+</html>

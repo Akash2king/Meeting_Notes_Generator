@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neonatal Monitoring System Architecture</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .diagram-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+  }
+  .diagram-element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eaf1f8;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .icon {
+    font-size: 2.5em;
+    color: #2196f3;
+  }
+  .title {
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  .description {
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+  }
+  /* Arrows */
+  .arrow {
+    width: 100%;
+    position: absolute;
+    height: 10px;
+    border-radius: 10px;
+  }
+  .arrow-esp32-firebase {
+    top: 60%;
+    left: 22%;
+    width: 120px;
+    height: 2px;
+    background-color: #4caf50;
+    transform: rotate(15deg);
+  }
+  .arrow-firebase-ai {
+    top: 45%;
+    left: 55%;
+    width: 150px;
+    height: 2px;
+    background-color: #4caf50;
+    transform: rotate(-15deg);
+  }
+  .arrow-ai-alerts {
+    top: 55%;
+    left: 68%;
+    width: 140px;
+    height: 2px;
+    background-color: #f44336;
+    transform: rotate(0deg);
+  }
+  /* Elements styling */
+  .esp32, .firebase, .ai, .mobile {
+    grid-column: span 1;
+  }
+  .sensors {
+    grid-column: span 2;
+  }
+</style>
+</head>
+<body>
+
+<div class="diagram-container">
+  <!-- ESP32 Module -->
+  <div class="diagram-element esp32">
+    <i class="fas fa-microchip icon"></i>
+    <div class="title">ESP32 Module</div>
+    <div class="description">Wi-Fi-enabled microcontroller</div>
+  </div>
+
+  <!-- Sensors -->
+  <div class="diagram-element sensors">
+    <i class="fas fa-heartbeat icon"></i> 
+    <i class="fas fa-thermometer-half icon"></i> 
+    <i class="fas fa-lungs icon"></i>
+    <div class="title">Sensors</div>
+    <div class="description">Heart Rate, SpO2, Temperature, Respiratory Rate</div>
+  </div>
+
+  <!-- Firebase Cloud -->
+  <div class="diagram-element firebase">
+    <i class="fab fa-cloud icon" style="color: #ffca28;"></i>
+    <div class="title">Firebase Database</div>
+    <div class="description">Cloud storage for sensor data</div>
+  </div>
+
+  <!-- AI Analysis -->
+  <div class="diagram-element ai">
+    <i class="fas fa-brain icon" style="color: #673ab7;"></i>
+    <div class="title">AI Analysis</div>
+    <div class="description">Real-time analysis and anomaly detection</div>
+  </div>
+
+  <!-- Mobile App -->
+  <div class="diagram-element mobile">
+    <i class="fas fa-mobile-alt icon" style="color: #009688;"></i>
+    <div class="title">Mobile App</div>
+    <div class="description">Real-time vitals and alerts</div>
+  </div>
+
+  <!-- Arrows for data flow -->
+  <div class="arrow arrow-esp32-firebase"></div>
+  <div class="arrow arrow-firebase-ai"></div>
+  <div class="arrow arrow-ai-alerts"></div>
+</div>
+
+</body>
+</html>
