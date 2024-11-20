@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transcription and Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
             color: #333;
             margin: 0;
             padding: 0;
@@ -17,13 +20,21 @@
             align-items: center;
             height: 100vh;
         }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         h1 {
             text-align: center;
             margin-top: 0;
             color: #3b5998;
-            font-size: 2.5em;
+            font-size: 2.8em;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         /* Form Styles */
@@ -31,43 +42,59 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
             max-width: 500px;
         }
+
         label {
             font-size: 18px;
+            color: #555;
             margin-bottom: 10px;
+            font-weight: 600;
         }
+
         input[type="file"] {
-            padding: 10px;
+            display: none;
+        }
+
+        .file-label {
+            padding: 15px;
             width: 100%;
+            max-width: 400px;
             margin-bottom: 20px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
+            border: 2px dashed #ccc;
+            border-radius: 12px;
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            color: #666;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
         }
-        input[type="file"]:focus {
+
+        .file-label:hover {
             border-color: #3b5998;
-            outline: none;
+            background-color: #f4f4f4;
         }
+
         button {
-            padding: 12px 30px;
-            background-color: #3b5998;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #3b5998, #8b9dc3);
             color: white;
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 18px;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
+
         button:hover {
-            background-color: #2e458b;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #2e458b, #3b5998);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         /* Loading Spinner */
@@ -81,6 +108,7 @@
             margin: 20px auto;
             display: none;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -89,24 +117,18 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2em;
-                letter-spacing: 1.5px;
+                font-size: 2.2em;
             }
             form {
-                width: 90%;
-                padding: 15px;
+                padding: 20px;
             }
-            input[type="file"] {
+            .file-label {
                 font-size: 14px;
-            }
-        }
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8em;
+                padding: 10px;
             }
             button {
                 font-size: 16px;
-                padding: 10px 20px;
+                padding: 12px 30px;
             }
         }
     </style>
@@ -116,7 +138,7 @@
         <h1>Transcription & Notes</h1>
 
         <form id="transcription-form" action="/transcribe" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
-            <label for="audio-file">Upload Audio File:</label>
+            <label for="audio-file" class="file-label">Click to Upload Audio File</label>
             <input type="file" id="audio-file" name="audio_file" accept="audio/*" required>
             <button type="submit">Transcribe</button>
         </form>
@@ -126,9 +148,22 @@
     </div>
 
     <script>
+        // Show loader animation on form submit
         function showLoader() {
             document.getElementById('loading-spinner').style.display = 'block';
         }
+
+        // File input trigger on label click
+        const fileInput = document.getElementById('audio-file');
+        const fileLabel = document.querySelector('.file-label');
+
+        fileLabel.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            fileLabel.textContent = fileInput.files[0] ? fileInput.files[0].name : "Click to Upload Audio File";
+        });
     </script>
 </body>
 </html>
